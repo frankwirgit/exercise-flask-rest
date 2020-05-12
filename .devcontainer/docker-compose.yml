@@ -1,0 +1,43 @@
+# services include a rest api and a postgres database
+version: "1"
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    hostname: myhost
+    ports:
+      - 5000:5000
+    volumes:
+      - ~/.gitconfig:/home/devops/.gitconfig
+      - ~/.ssh/:/home/devops/.ssh/
+      - ..:/workspace
+    command: sleep infinity
+    environment:
+      DATABASE_URI: "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}"
+      FASK_APP: services:app
+    networks:
+      - dev
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:alpine
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - dev
+
+volumes:
+  postgres_data:
+
+networks:
+  dev:
