@@ -1,4 +1,4 @@
-# test-flask-rest-v1
+# exercise-flask-rest
 
 It's a programming exercise for storing data through rest api in a relational database
 
