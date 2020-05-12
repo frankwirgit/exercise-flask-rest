@@ -14,12 +14,12 @@ While debugging just these tests it's convinient to use this:
 import os
 import logging
 import unittest
+from datetime import datetime
+import json
 from werkzeug.exceptions import NotFound
 from service.models import Pat, Gender, DataValidationError, db
 from service import app
 #from .factories import PatFactory
-from datetime import datetime
-import json
 
 #read the sample jason to dictionary list and provide for test
 with open('tests/records.json') as jsonfile:
@@ -137,8 +137,7 @@ class TestPatModel(unittest.TestCase):
 
     def test_deserialize_a_pat(self):
         """ Test deserialization of a patient """
-        #sample_data[3] = 
-        # {'title': 'Mr.', 'fname': 'Richard', 'mname': 'Cortez', 'lname': 'Jones', 'street': '400 West Broadway', 'postal_code': '92101', 'city': 'San Diego', 'state': 'CA', 'phone_home': '(619) 555-5555', 'email': 'richard@pennfirm.com', 'DOB': '1940-12-16', 'sex': 'Male'}
+        #sample_data[3] = {'title': 'Mr.', 'fname': 'Richard', 'mname': 'Cortez', 'lname': 'Jones', 'street': '400 West Broadway', 'postal_code': '92101', 'city': 'San Diego', 'state': 'CA', 'phone_home': '(619) 555-5555', 'email': 'richard@pennfirm.com', 'DOB': '1940-12-16', 'sex': 'Male'}
         pat = Pat()
         pat.deserialize(sample_data[3])
         self.assertNotEqual(pat, None)
@@ -254,7 +253,7 @@ class TestPatModel(unittest.TestCase):
             pat = pat.deserialize(sample_data[i])
             pat.create()
             pats.append(pat)
-        
+            
         pat = Pat.find_or_404(pats[1].id)
         self.assertIsNot(pat, None)
         self.assertEqual(pat.id, pats[1].id)

@@ -15,13 +15,14 @@ Test cases can be run with the following:
 import os
 import logging
 import unittest
-from unittest.mock import MagicMock, patch
+import json
+#from unittest.mock import MagicMock, patch
 from urllib.parse import quote_plus
 from flask_api import status  # HTTP Status Codes
 from service.models import Pat, db
 from service.service import app, init_db
 #from .factories import PatFactory
-import json
+
 
 # DATABASE_URI = os.getenv('DATABASE_URI', 'sqlite:///../db/test.db')
 DATABASE_URI = os.getenv(
@@ -186,8 +187,8 @@ class TestPatServer(unittest.TestCase):
         data = resp.get_json()
         self.assertEqual(len(data), len(gender_pats))
         # check the data just to be sure
-        for d in data:
-            self.assertEqual(d["sex"], test_gender.name)
+        for _dt in data:
+            self.assertEqual(_dt["sex"], test_gender.name)
         app.logger.info("run a test for testing query patients with the same gender")
 
     # @patch('service.models.Pet.find_by_name')
