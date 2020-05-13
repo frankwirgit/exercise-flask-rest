@@ -7,8 +7,8 @@ import factory
 from factory.fuzzy import FuzzyChoice
 from service.models import Pat, Gender
 
-class PetFactory(factory.Factory):
-    """ Creates fake pets that you don't have to feed """
+class PatFactory(factory.Factory):
+    """ Creates fake personal info that you don't have to feed from sample data """
 
     class Meta:
         model = Pat
