@@ -38,8 +38,8 @@ Add VSCode to the system path on host so that it can be invoked from the command
 Then start development environment setup with:
 
 ```bash
-    git clone https://github.com/.../test-flask-rest-v1.git
-    cd test-flask-rest-v1
+    git clone https://github.com/lcao/exercise-flask-rest.git
+    cd exercise-flask-rest
     code .
 ```
 
@@ -76,7 +76,7 @@ To run the service use `flask run` (Press Ctrl+C to exit):
   $ FLASK_APP=service:app flask run -h 0.0.0.0
 ```
 
-You must pass the parameters `-h 0.0.0.0` to have it listed on all network adapters to that the post can be forwarded by `vagrant` to your host computer so that you can open the web page in a local browser at: http://localhost:5000
+You must pass the parameters `-h 0.0.0.0` to have it listed on all network adapters to that the post can be forwarded to your host computer so that you can open the web page in a local browser at: http://localhost:5000
 
 Tests can also be conducted manually to check up intermediate results, such as checking the table records in database and check the request and response contents on web browser. To do that:
 POSTGRES database can be connected inside the database service container by using 
