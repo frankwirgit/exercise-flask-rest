@@ -1,4 +1,4 @@
-# exercise-flask-rest
+# exercise_flask_rest
 
 It's a programming exercise for storing data through rest api in a relational database
 
@@ -39,7 +39,7 @@ Then start development environment setup with:
 
 ```bash
     git clone https://github.com/lcao/exercise-flask-rest.git
-    cd exercise-flask-rest
+    cd exercise_flask_rest
     code .
 ```
 
